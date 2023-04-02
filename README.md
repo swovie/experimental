@@ -1,5 +1,5 @@
 # Swovie
-Swoole + Viewi, sounds nice right? well, we are experimenting!
+[OpenSwoole](https://openswoole.com) + [Viewi](https://viewi.net), sounds nice right? well, we are experimenting!
 
 ## Installation
 Clone & install the project
