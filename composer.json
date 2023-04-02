@@ -30,8 +30,7 @@
     },
     "scripts": {
         "post-autoload-dump": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
-            "@php -r \"file_exists('public') || mkdir('public');\""
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ]
     }
 }

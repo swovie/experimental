@@ -5,8 +5,9 @@ namespace Swovie\Backend;
 use Exception;
 use OpenSwoole\Http\Request;
 use OpenSwoole\Http\Response;
-use OpenSwoole\Http\Server as SWHttpServer;
 use OpenSwoole\Timer;
+use OpenSwoole\WebSocket\Frame;
+use OpenSwoole\Websocket\Server as SWHttpServer;
 use ReflectionException;
 use RTC\Watcher\Watcher;
 use RTC\Watcher\Watching\EventInfo;
@@ -78,6 +79,9 @@ class Server
         // Handle Request Event
         $this->server->on('request', $this->handleRequest(...));
 
+        // Handle Message Event
+        $this->server->on('message', $this->handleMessage(...));
+
         // Handle Start Event
         $this->server->on('start', $this->handleStart(...));
 
@@ -104,6 +108,11 @@ class Server
         }
 
         return $config;
+    }
+
+    private function handleMessage(\OpenSwoole\WebSocket\Server $server, Frame $frame): void
+    {
+
     }
 
     /**
