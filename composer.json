@@ -1,4 +1,14 @@
 {
+    "name": "swovie/experimental",
+    "description": "Swoole + Viewi Combo",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ahmard",
+            "email": "me@ahmard.com"
+        }
+    ],
     "require": {
         "php": "^8.1",
         "viewi/viewi": "^1.0",
