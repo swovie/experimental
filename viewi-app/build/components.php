@@ -7,6 +7,32 @@ function ReadComponentsInfo(PageEngine $pageEngine)
     $pageEngine->setStartups(array (
 ));
 $pageEngine->setComponentsInfo(array (
+  'NotFoundPage' => 
+  array (
+    'Name' => 'NotFoundPage',
+    'Namespace' => 'Swovie\\Components\\Views\\NotFound',
+    'ComponentName' => 'NotFoundPage',
+    'Tag' => 'NotFoundPage',
+    'FullPath' => '/Views/NotFound/NotFoundPage.php',
+    'TemplatePath' => '/Views/NotFound/NotFoundPage.html',
+    'BuildPath' => '/Views/NotFound/NotFoundPage.php',
+    'RenderFunction' => 'RenderNotFoundPage',
+    'IsComponent' => true,
+    'HasInit' => false,
+    'HasMounted' => false,
+    'HasBeforeMount' => false,
+    'HasVersions' => false,
+    'Relative' => true,
+    'Inputs' => 
+    array (
+      '__id' => true,
+      '_props' => true,
+      '_refs' => true,
+      '_element' => true,
+      '_slots' => true,
+    ),
+    'Instance' => NULL,
+  ),
   'MenuBar' => 
   array (
     'Name' => 'MenuBar',
@@ -79,32 +105,6 @@ $pageEngine->setComponentsInfo(array (
     'Inputs' => 
     array (
       'title' => true,
-      '__id' => true,
-      '_props' => true,
-      '_refs' => true,
-      '_element' => true,
-      '_slots' => true,
-    ),
-    'Instance' => NULL,
-  ),
-  'NotFoundPage' => 
-  array (
-    'Name' => 'NotFoundPage',
-    'Namespace' => 'Swovie\\Components\\Views\\NotFound',
-    'ComponentName' => 'NotFoundPage',
-    'Tag' => 'NotFoundPage',
-    'FullPath' => '/Views/NotFound/NotFoundPage.php',
-    'TemplatePath' => '/Views/NotFound/NotFoundPage.html',
-    'BuildPath' => '/Views/NotFound/NotFoundPage.php',
-    'RenderFunction' => 'RenderNotFoundPage',
-    'IsComponent' => true,
-    'HasInit' => false,
-    'HasMounted' => false,
-    'HasBeforeMount' => false,
-    'HasVersions' => false,
-    'Relative' => true,
-    'Inputs' => 
-    array (
       '__id' => true,
       '_props' => true,
       '_refs' => true,
@@ -224,21 +224,6 @@ $pageEngine->setComponentsInfo(array (
     ),
     'Instance' => NULL,
   ),
-  'HomePage_Slot' => 
-  array (
-    'Name' => 'HomePage_Slot',
-    'Namespace' => 'Swovie\\Components\\Views\\Home',
-    'ComponentName' => 'HomePage',
-    'Tag' => 'HomePage_Slot',
-    'FullPath' => '/Views/Home/HomePage.php',
-    'TemplatePath' => '/Views/Home/HomePage_Slot.html',
-    'BuildPath' => '/_slots/Views/Home/HomePage_Slot.php',
-    'RenderFunction' => 'RenderHomePage_Slot',
-    'IsComponent' => false,
-    'IsSlot' => true,
-    'Relative' => true,
-    'Instance' => NULL,
-  ),
   'NotFoundPage_Slot' => 
   array (
     'Name' => 'NotFoundPage_Slot',
@@ -249,6 +234,21 @@ $pageEngine->setComponentsInfo(array (
     'TemplatePath' => '/Views/NotFound/NotFoundPage_Slot.html',
     'BuildPath' => '/_slots/Views/NotFound/NotFoundPage_Slot.php',
     'RenderFunction' => 'RenderNotFoundPage_Slot',
+    'IsComponent' => false,
+    'IsSlot' => true,
+    'Relative' => true,
+    'Instance' => NULL,
+  ),
+  'HomePage_Slot' => 
+  array (
+    'Name' => 'HomePage_Slot',
+    'Namespace' => 'Swovie\\Components\\Views\\Home',
+    'ComponentName' => 'HomePage',
+    'Tag' => 'HomePage_Slot',
+    'FullPath' => '/Views/Home/HomePage.php',
+    'TemplatePath' => '/Views/Home/HomePage_Slot.html',
+    'BuildPath' => '/_slots/Views/Home/HomePage_Slot.php',
+    'RenderFunction' => 'RenderHomePage_Slot',
     'IsComponent' => false,
     'IsSlot' => true,
     'Relative' => true,
