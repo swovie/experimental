@@ -40,16 +40,8 @@ class Server
     {
         $this->server = new SWHttpServer($this->host, $this->port);
 
-        $this->server->on('request', function (Request $request, Response $response) {
-            $htmlResponse = Router::handle(
-                url: $request->server['request_uri'],
-                method: $request->getMethod(),
-                params: $request->get ?? []
-            );
-
-            $response->header('content-type', 'text/html');
-            $response->end($htmlResponse);
-        });
+        // Handle Request Event
+        $this->server->on('request', $this->handleRequest(...));
 
         // Handle Start Event
         $this->server->on('start', $this->handleStart(...));
@@ -59,6 +51,18 @@ class Server
 
         // Start Server
         $this->server->start();
+    }
+
+    private function handleRequest(Request $request, Response $response): void
+    {
+        $htmlResponse = Router::handle(
+            url: $request->server['request_uri'],
+            method: $request->getMethod(),
+            params: $request->get ?? []
+        );
+
+        $response->header('content-type', 'text/html');
+        $response->end($htmlResponse);
     }
 
     private function handleStart(SWHttpServer $server): void
