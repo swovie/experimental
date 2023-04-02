@@ -1,0 +1,19 @@
+{
+    "require": {
+        "php": "^8.1",
+        "viewi/viewi": "^1.0",
+        "vlucas/phpdotenv": "^5.5",
+        "symfony/console": "^6.2"
+    },
+    "require-dev": {
+        "phprtc/watcher": "^0.1.3",
+        "symfony/var-dumper": "^6.2",
+        "openswoole/ide-helper": "^22"
+    },
+    "autoload": {
+        "psr-4": {
+            "Swovie\\Components\\": "viewi-app/Components/",
+            "Swovie\\Backend\\": "backend/"
+        }
+    }
+}
