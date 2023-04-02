@@ -1,6 +1,6 @@
 /.idea
 /vendor
-/viewi-build
-/viewi-app/build
+/viewi/build
+/public/viewi
 
 /.env

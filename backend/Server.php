@@ -2,6 +2,7 @@
 
 namespace Swovie\Backend;
 
+use Exception;
 use OpenSwoole\Http\Request;
 use OpenSwoole\Http\Response;
 use OpenSwoole\Http\Server as SWHttpServer;
@@ -14,6 +15,8 @@ class Server
 {
     protected readonly Watcher $watcher;
     protected readonly SWHttpServer $server;
+    protected string $documentRoot;
+    protected bool $withStaticHandler;
 
 
     public function __construct(
@@ -36,6 +39,18 @@ class Server
         return $this;
     }
 
+    public function withDocumentRoot(string $path): static
+    {
+        $this->documentRoot = $path;
+        return $this;
+    }
+
+    public function withStaticFileHandler(bool $state): static
+    {
+        $this->withStaticHandler = $state;
+        return $this;
+    }
+
     public function start(): void
     {
         $this->server = new SWHttpServer($this->host, $this->port);
@@ -49,10 +64,34 @@ class Server
         // Handle Shutdown Event
         $this->server->on('shutdown', $this->handleShutdown(...));
 
+        // Set configurations
+        $this->server->set($this->generateServerConfigs());
+
         // Start Server
         $this->server->start();
     }
 
+    protected function generateServerConfigs(): array
+    {
+        $config = [];
+
+        if (isset($this->withStaticHandler)) {
+            $config['enable_static_handler'] = $this->withStaticHandler;
+        }
+
+        if (isset($this->documentRoot)) {
+            $config['document_root'] = $this->documentRoot;
+        }
+
+        return $config;
+    }
+
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return void
+     * @throws Exception
+     */
     private function handleRequest(Request $request, Response $response): void
     {
         $htmlResponse = Router::handle(

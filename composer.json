@@ -18,12 +18,20 @@
     "require-dev": {
         "phprtc/watcher": "^0.1.3",
         "symfony/var-dumper": "^6.2",
-        "openswoole/ide-helper": "^22"
+        "openswoole/ide-helper": "^22",
+        "fakerphp/faker": "^1.21"
     },
     "autoload": {
         "psr-4": {
-            "Swovie\\Components\\": "viewi-app/Components/",
+            "Swovie\\Components\\": "viewi/Components/",
             "Swovie\\Backend\\": "backend/"
-        }
+        },
+        "files": ["helpers/functions.php"]
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "@php -r \"file_exists('public') || mkdir('public');\""
+        ]
     }
 }
