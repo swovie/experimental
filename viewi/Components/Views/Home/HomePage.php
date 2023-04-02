@@ -9,6 +9,7 @@ use Viewi\BaseComponent;
 class HomePage extends BaseComponent
 {
     public string $title;
+    public string $time;
     public string $message;
     private Generator $faker;
 
@@ -16,7 +17,8 @@ class HomePage extends BaseComponent
     {
         $this->faker = Factory::create();
 
-        $this->title = "Hello";
+        $this->title = "Swovie";
+        $this->time = date('H:i:s');
         $this->message = $this->faker->name();
     }
 }

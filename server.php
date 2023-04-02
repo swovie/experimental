@@ -24,12 +24,15 @@ App::initEngine(
         ->setOutputMode()
         ->setServerBuildDir(__DIR__ . '/viewi/build')
         ->setSourceDir(__DIR__ . '/viewi/Components')
-        ->setPublicBuildDir('')
+        ->setPublicBuildDir('viewi')
         ->setPublicRootDir(__DIR__ . '/public')
 );
 
 Server::create($_ENV['SERVER_HOST'], $_ENV['SERVER_PORT'])
-    ->watch([__DIR__ . '/viewi/', __DIR__ . '/public'])
     ->withStaticFileHandler(true)
     ->withDocumentRoot(__DIR__ . '/public')
+    ->watch([
+        __DIR__ . '/viewi',
+        __DIR__ . '/public',
+    ])
     ->start();

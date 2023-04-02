@@ -6,6 +6,8 @@ use Exception;
 use OpenSwoole\Http\Request;
 use OpenSwoole\Http\Response;
 use OpenSwoole\Http\Server as SWHttpServer;
+use OpenSwoole\Timer;
+use ReflectionException;
 use RTC\Watcher\Watcher;
 use RTC\Watcher\Watching\EventInfo;
 use Viewi\App;
@@ -17,6 +19,9 @@ class Server
     protected readonly SWHttpServer $server;
     protected string $documentRoot;
     protected bool $withStaticHandler;
+    protected int $reloadTimerId;
+    protected int $reloadTimerTimeoutAt;
+    protected int $reloadTimerInterval = 150;
 
 
     public function __construct(
@@ -30,6 +35,18 @@ class Server
     public static function create(string $host, int $port): static
     {
         return new static($host, $port);
+    }
+
+    /**
+     * @param bool $isRecompiling
+     * @return void
+     * @throws ReflectionException
+     */
+    public static function compileViewi(bool $isRecompiling = false): void
+    {
+        $compileWord = $isRecompiling ? 'recompiling' : 'compiling';
+        Console::comment(sprintf('%s viewi...', $compileWord));
+        App::getEngine()->compile();
     }
 
     public function watch(array $paths): static
@@ -51,6 +68,9 @@ class Server
         return $this;
     }
 
+    /**
+     * @return void
+     */
     public function start(): void
     {
         $this->server = new SWHttpServer($this->host, $this->port);
@@ -104,9 +124,17 @@ class Server
         $response->end($htmlResponse);
     }
 
+    /**
+     * @param SWHttpServer $server
+     * @return void
+     * @throws ReflectionException
+     */
     private function handleStart(SWHttpServer $server): void
     {
         Console::info("server started at http://$this->host:$this->port");
+
+        // Compile Viewi Templates
+        self::compileViewi(isRecompiling: true);
 
         if (isset($this->watcher)) {
             Console::comment('watcher started');
@@ -114,13 +142,19 @@ class Server
             $this->watcher->onChange(function (EventInfo $info) use ($server) {
                 Console::cyan(sprintf('file updated: %s', $info->getWatchedItem()->getFullPath()));
 
-                Console::comment('recompiling viewi...');
-                // Compile Viewi Templates
-                App::getEngine()->compile();
+                if (isset($this->reloadTimerTimeoutAt) && $this->reloadTimerTimeoutAt > microtime(true)) {
+                    Timer::clear($this->reloadTimerId);
+                }
 
-                Console::comment('restarting server...');
-                // Reload Swoole Server
-                $this->server->reload();
+                $this->reloadTimerTimeoutAt = microtime(true) + $this->reloadTimerInterval;
+                $this->reloadTimerId = Timer::after($this->reloadTimerInterval, function () {
+                    // Compile Viewi Templates
+                    self::compileViewi(isRecompiling: true);
+
+                    Console::comment('restarting server...');
+                    // Reload Swoole Server
+                    $this->server->reload();
+                });
             });
 
             $this->watcher->watch();
