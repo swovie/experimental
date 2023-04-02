@@ -4,7 +4,7 @@ use Viewi\PageEngine;
 use Viewi\BaseComponent;
 
 function RenderMenuBar(
-    Components\Views\Common\MenuBar $_component,
+    Swovie\Components\Views\Common\MenuBar $_component,
     PageEngine $pageEngine,
     array $slots
     , ...$scope

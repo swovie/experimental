@@ -1,6 +1,6 @@
 <?php
 
-namespace Components\Views\NotFound;
+namespace Swovie\Components\Views\NotFound;
 
 use Viewi\BaseComponent;
 

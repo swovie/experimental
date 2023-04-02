@@ -4,7 +4,7 @@ use Viewi\PageEngine;
 use Viewi\BaseComponent;
 
 function RenderLayout(
-    Components\Views\Layouts\Layout $_component,
+    Swovie\Components\Views\Layouts\Layout $_component,
     PageEngine $pageEngine,
     array $slots
     , ...$scope

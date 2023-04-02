@@ -1,11 +1,12 @@
 <?php
 
-namespace Backend;
+namespace Swovie\Backend;
 
 use OpenSwoole\Http\Request;
 use OpenSwoole\Http\Response;
 use OpenSwoole\Http\Server as SWHttpServer;
 use RTC\Watcher\Watcher;
+use RTC\Watcher\Watching\EventInfo;
 use Viewi\App;
 use Viewi\Routing\Router;
 
@@ -20,6 +21,12 @@ class Server
         protected readonly int    $port
     )
     {
+    }
+
+
+    public static function create(string $host, int $port): static
+    {
+        return new static($host, $port);
     }
 
     public function watch(array $paths): static
@@ -44,33 +51,45 @@ class Server
             $response->end($htmlResponse);
         });
 
+        // Handle Start Event
+        $this->server->on('start', $this->handleStart(...));
 
-        $this->server->on('start', function (Server $server) {
-            echo "Server started at http://{$this->host}:{$this->port}\n";
-
-            if (isset($this->watcher)) {
-                $this->watcher
-                    ->addPath(__DIR__ . '/viewi-app')
-                    ->onChange(function () use ($server) {
-                        // Compile Viewi Templates
-                        App::getEngine()->compile();
-                        // Reload Swoole Server
-                        $this->server->reload();
-                    })
-                    ->watch();
-            }
-        });
-
-        // Stop watcher
+        // Handle Shutdown Event
         $this->server->on('shutdown', $this->handleShutdown(...));
 
+        // Start Server
+        $this->server->start();
     }
 
+    private function handleStart(SWHttpServer $server): void
+    {
+        Console::info("server started at http://$this->host:$this->port");
+
+        if (isset($this->watcher)) {
+            Console::comment('watcher started');
+
+            $this->watcher->onChange(function (EventInfo $info) use ($server) {
+                dump($info->getWatchedItem()->getFullPath());
+                Console::comment('recompiling viewi...');
+                // Compile Viewi Templates
+                App::getEngine()->compile();
+
+                Console::comment('restarting server...');
+                // Reload Swoole Server
+                $this->server->reload();
+            });
+
+            $this->watcher->watch();
+        }
+    }
 
     private function handleShutdown(): void
     {
         if (isset($this->watcher)) {
             $this->watcher->stop();
+            Console::comment('watcher stopped');
         }
+
+        Console::comment('server shutdown');
     }
 }

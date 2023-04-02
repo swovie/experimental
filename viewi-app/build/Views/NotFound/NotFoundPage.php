@@ -4,7 +4,7 @@ use Viewi\PageEngine;
 use Viewi\BaseComponent;
 
 function RenderNotFoundPage(
-    Components\Views\NotFound\NotFoundPage $_component,
+    Swovie\Components\Views\NotFound\NotFoundPage $_component,
     PageEngine $pageEngine,
     array $slots
     , ...$scope

@@ -1,6 +1,6 @@
 <?php
 
-namespace Components\Views\Layouts;
+namespace Swovie\Components\Views\Layouts;
 
 use Viewi\BaseComponent;
 

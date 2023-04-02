@@ -4,7 +4,7 @@ use Viewi\PageEngine;
 use Viewi\BaseComponent;
 
 function RenderHomePage(
-    Components\Views\Home\HomePage $_component,
+    Swovie\Components\Views\Home\HomePage $_component,
     PageEngine $pageEngine,
     array $slots
     , ...$scope

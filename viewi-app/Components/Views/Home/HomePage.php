@@ -1,6 +1,6 @@
 <?php
 
-namespace Components\Views\Home;
+namespace Swovie\Components\Views\Home;
 
 use Viewi\BaseComponent;
 

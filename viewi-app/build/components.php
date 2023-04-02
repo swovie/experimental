@@ -10,7 +10,7 @@ $pageEngine->setComponentsInfo(array (
   'MenuBar' => 
   array (
     'Name' => 'MenuBar',
-    'Namespace' => 'Components\\Views\\Common',
+    'Namespace' => 'Swovie\\Components\\Views\\Common',
     'ComponentName' => 'MenuBar',
     'Tag' => 'MenuBar',
     'FullPath' => '/Views/Common/MenuBar.php',
@@ -36,7 +36,7 @@ $pageEngine->setComponentsInfo(array (
   'HomePage' => 
   array (
     'Name' => 'HomePage',
-    'Namespace' => 'Components\\Views\\Home',
+    'Namespace' => 'Swovie\\Components\\Views\\Home',
     'ComponentName' => 'HomePage',
     'Tag' => 'HomePage',
     'FullPath' => '/Views/Home/HomePage.php',
@@ -63,7 +63,7 @@ $pageEngine->setComponentsInfo(array (
   'Layout' => 
   array (
     'Name' => 'Layout',
-    'Namespace' => 'Components\\Views\\Layouts',
+    'Namespace' => 'Swovie\\Components\\Views\\Layouts',
     'ComponentName' => 'Layout',
     'Tag' => 'Layout',
     'FullPath' => '/Views/Layouts/Layout.php',
@@ -90,7 +90,7 @@ $pageEngine->setComponentsInfo(array (
   'NotFoundPage' => 
   array (
     'Name' => 'NotFoundPage',
-    'Namespace' => 'Components\\Views\\NotFound',
+    'Namespace' => 'Swovie\\Components\\Views\\NotFound',
     'ComponentName' => 'NotFoundPage',
     'Tag' => 'NotFoundPage',
     'FullPath' => '/Views/NotFound/NotFoundPage.php',
@@ -119,8 +119,8 @@ $pageEngine->setComponentsInfo(array (
     'Namespace' => 'Viewi\\Components\\Assets',
     'ComponentName' => 'CssBundle',
     'Tag' => 'CssBundle',
-    'FullPath' => '/home/ahmard/projects/mine/file-manager/vendor/viewi/viewi/src/Viewi/Components/Assets/CssBundle.php',
-    'TemplatePath' => '/home/ahmard/projects/mine/file-manager/vendor/viewi/viewi/src/Viewi/Components/Assets/CssBundle.html',
+    'FullPath' => '/home/ahmard/projects/swovie/experimental/vendor/viewi/viewi/src/Viewi/Components/Assets/CssBundle.php',
+    'TemplatePath' => '/home/ahmard/projects/swovie/experimental/vendor/viewi/viewi/src/Viewi/Components/Assets/CssBundle.html',
     'BuildPath' => '/Viewi/Components/Assets/CssBundle_v1.php',
     'IsComponent' => true,
     'HasInit' => false,
@@ -157,7 +157,7 @@ $pageEngine->setComponentsInfo(array (
   array (
     'Name' => 'HttpClient',
     'Namespace' => 'Viewi\\Common',
-    'FullPath' => '/home/ahmard/projects/mine/file-manager/vendor/viewi/viewi/src/Viewi/Common/HttpClient.php',
+    'FullPath' => '/home/ahmard/projects/swovie/experimental/vendor/viewi/viewi/src/Viewi/Common/HttpClient.php',
     'IsComponent' => false,
     'HasInit' => false,
     'HasMounted' => false,
@@ -176,7 +176,7 @@ $pageEngine->setComponentsInfo(array (
   array (
     'Name' => 'AsyncStateManager',
     'Namespace' => 'Viewi\\Components\\Services',
-    'FullPath' => '/home/ahmard/projects/mine/file-manager/vendor/viewi/viewi/src/Viewi/Components/Services/AsyncStateManager.php',
+    'FullPath' => '/home/ahmard/projects/swovie/experimental/vendor/viewi/viewi/src/Viewi/Components/Services/AsyncStateManager.php',
     'IsComponent' => false,
     'HasInit' => false,
     'HasMounted' => false,
@@ -192,8 +192,8 @@ $pageEngine->setComponentsInfo(array (
     'Namespace' => 'Viewi\\Components\\Assets',
     'ComponentName' => 'ViewiScripts',
     'Tag' => 'ViewiScripts',
-    'FullPath' => '/home/ahmard/projects/mine/file-manager/vendor/viewi/viewi/src/Viewi/Components/Assets/ViewiScripts.php',
-    'TemplatePath' => '/home/ahmard/projects/mine/file-manager/vendor/viewi/viewi/src/Viewi/Components/Assets/ViewiScripts.html',
+    'FullPath' => '/home/ahmard/projects/swovie/experimental/vendor/viewi/viewi/src/Viewi/Components/Assets/ViewiScripts.php',
+    'TemplatePath' => '/home/ahmard/projects/swovie/experimental/vendor/viewi/viewi/src/Viewi/Components/Assets/ViewiScripts.html',
     'BuildPath' => '/Viewi/Components/Assets/ViewiScripts.php',
     'RenderFunction' => 'RenderViewiScripts',
     'IsComponent' => true,
@@ -227,7 +227,7 @@ $pageEngine->setComponentsInfo(array (
   'HomePage_Slot' => 
   array (
     'Name' => 'HomePage_Slot',
-    'Namespace' => 'Components\\Views\\Home',
+    'Namespace' => 'Swovie\\Components\\Views\\Home',
     'ComponentName' => 'HomePage',
     'Tag' => 'HomePage_Slot',
     'FullPath' => '/Views/Home/HomePage.php',
@@ -242,7 +242,7 @@ $pageEngine->setComponentsInfo(array (
   'NotFoundPage_Slot' => 
   array (
     'Name' => 'NotFoundPage_Slot',
-    'Namespace' => 'Components\\Views\\NotFound',
+    'Namespace' => 'Swovie\\Components\\Views\\NotFound',
     'ComponentName' => 'NotFoundPage',
     'Tag' => 'NotFoundPage_Slot',
     'FullPath' => '/Views/NotFound/NotFoundPage.php',

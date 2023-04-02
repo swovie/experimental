@@ -1,6 +1,6 @@
 <?php
 
-namespace Backend;
+namespace Swovie\Backend;
 
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -9,8 +9,8 @@ class Console
 {
     protected static Console $instance;
 
-    protected OutputInterface $output;
-    protected string $prefix;
+    protected static OutputInterface $output;
+    protected static string $prefix;
 
 
     public static function getInstance(bool $new = false): Console
@@ -22,73 +22,73 @@ class Console
         return self::$instance;
     }
 
-    public function setPrefix(string $prefix): void
+    public static function setPrefix(string $prefix): void
     {
-        $this->prefix = $prefix;
+        self::$prefix = $prefix;
     }
 
-    public function getPrefix(): string
+    public static function getPrefix(): string
     {
-        return $this->prefix ?? '';
+        return self::$prefix ?? '';
     }
 
-    protected function getOutput(): OutputInterface
+    protected static function getOutput(): OutputInterface
     {
-        if (!isset($this->output)) {
-            $this->output = new ConsoleOutput();
+        if (!isset(self::$output)) {
+            self::$output = new ConsoleOutput();
         }
 
-        return $this->output;
+        return self::$output;
     }
 
-    public function comment(string $message): void
+    public static function comment(string $message): void
     {
-        $this->writeWithTimestamp("<comment>$message</comment>");
+        self::writeWithTimestamp("<comment>$message</comment>");
     }
 
-    public function info(string $message): void
+    public static function info(string $message): void
     {
-        $this->writeWithTimestamp("<info>$message</info>");
+        self::writeWithTimestamp("<info>$message</info>");
     }
 
-    public function question(string $message): void
+    public static function question(string $message): void
     {
-        $this->writeWithTimestamp("<question>$message</question>");
+        self::writeWithTimestamp("<question>$message</question>");
     }
 
-    public function error(string $message): void
+    public static function error(string $message): void
     {
-        $this->writeWithTimestamp("<error>$message</error>");
+        self::writeWithTimestamp("<error>$message</error>");
     }
 
-    public function echo(string $message): void
+    public static function echo(string $message): void
     {
-        $this->writeWithTimestamp($message);
+        self::writeWithTimestamp($message);
     }
 
-    public function write(string $message): void
+    public static function write(string $message): void
     {
-        $this->writeWithTimestamp($message, false);
+        self::writeWithTimestamp($message, false);
     }
 
-    public function writeln(string $message): void
+    public static function writeln(string $message): void
     {
-        $this->writeWithTimestamp($message);
+        self::writeWithTimestamp($message);
     }
 
-    private function writeWithTimestamp(string $message, bool $newLine = true): void
+    private static function writeWithTimestamp(string $message, bool $newLine = true): void
     {
-        $message = $this->prependTime(self::getPrefix() . $message);
+        $message = self::prependTime(self::getPrefix() . $message);
         self::writeWithoutTimestamp($message, $newLine, false);
     }
 
-    private function writeWithoutTimestamp(string $message, bool $newLine = true, bool $prefix = true): void
+    private static function writeWithoutTimestamp(string $message, bool $newLine = true, bool $prefix = true): void
     {
         $message = $prefix ? self::getPrefix() . $message : $message;
-        $this->getOutput()->write($message . ($newLine ? PHP_EOL : null));
+        self::getOutput()->write($message . ($newLine ? PHP_EOL : null));
     }
 
-    protected function prependTime(string $message): string
+    protected static function prependTime(string $message): string
     {
         return date('[Y-m-d H:i:s]') . " $message";
     }
