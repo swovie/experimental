@@ -69,7 +69,8 @@ class Server
             Console::comment('watcher started');
 
             $this->watcher->onChange(function (EventInfo $info) use ($server) {
-                dump($info->getWatchedItem()->getFullPath());
+                Console::cyan(sprintf('file updated: %s', $info->getWatchedItem()->getFullPath()));
+
                 Console::comment('recompiling viewi...');
                 // Compile Viewi Templates
                 App::getEngine()->compile();

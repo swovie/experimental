@@ -6,5 +6,5 @@ use Viewi\BaseComponent;
 
 class HomePage extends BaseComponent
 {
-    public string $title = 'Hello World';
+    public string $title = 'Hello Worldy';
 }

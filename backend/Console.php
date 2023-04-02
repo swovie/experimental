@@ -46,6 +46,11 @@ class Console
         self::writeWithTimestamp("<comment>$message</comment>");
     }
 
+    public static function cyan(string $message): void
+    {
+        self::writeWithTimestamp("<fg=cyan>$message</>");
+    }
+
     public static function info(string $message): void
     {
         self::writeWithTimestamp("<info>$message</info>");
